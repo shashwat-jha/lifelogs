@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile Picture</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .button-container form {
+            margin: 10px 0;
+            width: 100%;
+        }
+        .button-container input[type="file"] {
+            margin: 10px 0;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .button-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            margin-top: 10px;
+        }
+        .upload-btn {
+            background-color: #4CAF50;
+        }
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+        .delete-btn {
+            background-color: #f44336;
+        }
+        .delete-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Your Profile Picture</h1>
+        <div class="button-container">
+            <!-- Form for uploading a new profile picture -->
+            <form id="uploadForm" action="/upload-profile-pic" method="post" enctype="multipart/form-data">
+                <input type="file" name="profilePic" id="profilePicInput" style="display:none;">
+                <button type="button" class="upload-btn" onclick="document.getElementById('profilePicInput').click();">Upload New Picture</button>
+            </form>
+            
+            <!-- Form for deleting the current profile picture -->
+            <form action="/remove-profile-pic" method="post">
+                <button type="submit" class="delete-btn">Delete Current Picture</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Handle file selection and submit the upload form
+        document.getElementById('profilePicInput').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.getElementById('uploadForm').submit();
+            }
+        });
+    </script>
+</body>
+</html>
